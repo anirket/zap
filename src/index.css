@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ./src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+.mainpage {
+    height: 85vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.input-text {
+    position: absolute;
+    bottom: 3.55rem;
+    padding: 0.1rem
+}
+
+.onlinediv {
+    height: 44vh;
+    margin-top: 4.5rem;
+}
+
+@media only screen and (min-width:768px) {
+    .messagediv {
+        height: 75vh;
+        margin-top: -3rem;
+        width: 40vw;
+    }
+    .onlinediv {
+        height: 59.5vh;
+        margin-top: 3.8rem;
+        right: 30%;
+        TOP: 2.5%;
+    }
+    .onlineactive {
+        margin-top: -0.1rem;
+        margin-right: -0.75rem;
+        right: 30.8%;
+        top: 14%;
+    }
+    .input-text {
+        position: fixed;
+        bottom: 5.75rem;
+    }
+    .inputfield {
+        width: 23.2vw;
+    }
+    .copyclipboarddiv {
+        width: 53.9vh;
+    top: 5.5px;
+        outline: none;
+    }
+
+ 
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
 }
