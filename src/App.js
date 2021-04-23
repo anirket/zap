@@ -65,7 +65,7 @@ function App() {
                             <Route exact path="/joinroom" component={Joinroom}></Route>
                         </Switch>
                         {/* FOOTER SECTION */}
-                        <footer className="w-screen bg-gray-800 text-white justify-around items-center absolute bottom-0 p-2 flex pt-4">© 2021 ARK <div className="social-icons flex justify-between w-14 text-xl"><a href=""><FaTwitter /></a><a href=""><FaGithub /></a></div></footer>
+                        <footer className="hidden w-screen bg-gray-800 text-white justify-around items-center absolute bottom-0 p-2 md:flex pt-4">© 2021 ARK <div className="social-icons flex justify-between w-14 text-xl"><a href="https://twitter.com/anirket"><FaTwitter /></a><a href="https://github.com/anirket"><FaGithub /></a></div></footer>
 
                     </div>
 
