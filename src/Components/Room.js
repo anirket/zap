@@ -61,6 +61,7 @@ function Room() {
         })
         socket.on('userlist', (userlist) => {
             setuserarraylist(userlist);
+            console.log('aaa', userlist)
         })
         socket.on('newlist', (data) => {
             setuserarraylist(data);
@@ -129,39 +130,41 @@ function Room() {
         return (<h1 className="text-2xl">LOADING...</h1>)
     }
     return (
-        <div>
+        <div className='relative'>
             <Notifications />
             {isAuthenticated ?
                 (<>
                     {/* <div className="bg-gray-700 px-5 w-96 pr-0 py-2 text-sm md:hidden text-white mt-2"><span className="font-semibold">Room ID : </span> {roomid}</div> */}
                     <CopyToClipboard text={roomid} onCopy={() => showtoast()}>
-                        <button className="copyclipboarddiv bg-gray-700 px-0 w-96 pr-0 py-2 text-sm md:absolute md:z-50   text-white mt-2 flex items-center justify-center outline-none border-none rounded-tl-lg" >
+                        <button className="copyclipboarddiv bg-gray-700 px-0 w-96 pr-0 py-2 text-sm md:absolute md:z-50   text-white mt-2 flex items-center justify-center outline-none border-none rounded-tl-lg rounded-tr-lg" >
                             <span className="px-2">
                                 Click here to copy RoomID to clipboard
-                                       </span>
+                            </span>
                             <MdContentCopy className="text-lg" />
                         </button>
                     </CopyToClipboard>
-                    <div className="messagediv w-96 h-96 overflow-scroll bg-white rounded-lg relative mt-1">
+                    <div className="messagediv w-full h-96 overflow-scroll bg-white rounded-lg relative mt-1">
 
                         {/* hidden here */}
-                        <span className="onlineactive fixed right-3   text-2xl  z-20 flex items-center md:justify-center bg-white md:p-3 md:w-52 md:rounded-tr-lg border-l-2 border-b-2 border-gray-300 w-96 justify-between px-10 py-2 ">
-                            <span className="text-xl mr-2 flex items-center justify-center">
-                                <div className="h-3 w-3  bg-green-400 mr-3 rounded-full"></div>Online {users.length}
-                            </span>
-                            <span className="toggleslider">
-                                {onlinedivtoggle ? (<IoIosArrowDropleft onClick={() => toggleonlinediv()} className="cursor-pointer text-3xl " />) : (<IoIosArrowDropright onClick={() => toggleonlinediv()} className="cursor-pointer text-3xl " />)}
-                            </span>
-                        </span>
+                        <div className='md:flex justify-end'>
+                            <div className="onlineactive fixed text-2xl  z-20 flex items-center md:justify-center bg-white md:p-3 md:w-52 md:rounded-tr-lg border-l-2 border-b-2 border-gray-300 w-96 justify-between py-2 px-5">
+                                <span className="text-xl mr-2 flex items-center justify-center">
+                                    <div className="h-3 w-3  bg-green-400 mr-3 rounded-full"></div>Online {users.length}
+                                </span>
+                                <span className="toggleslider">
+                                    {onlinedivtoggle ? (<IoIosArrowDropleft onClick={() => toggleonlinediv()} className="cursor-pointer text-3xl " />) : (<IoIosArrowDropright onClick={() => toggleonlinediv()} className="cursor-pointer text-3xl " />)}
+                                </span>
+                            </div>
+                        </div>
 
                         {/* all messages go here */}
-                        <div className="messages pt-16 pl-8 pb-12">
+                        <div className="messages pt-[60px] pl-8 pb-12">
                             {
                                 messages.map((messagecontent) => (
                                     messagecontent.map((msg, index) => {
                                         if (msg.sub != user.sub) {
                                             return (
-                                                <div key={index} className="bg-gray-400 mt-2  w-60  rounded-tl-lg rounded-tr-lg rounded-br-lg ">
+                                                <div key={index} className="bg-gray-400 mt-2  w-60  rounded-tl-lg rounded-tr-lg rounded-br-lg">
                                                     <div className="flex bg-gray-200 items-center justify-between px-2 rounded-tl-lg rounded-tr-lg text-sm py-1 font-semibold">
                                                         <div>{msg.name}</div>
                                                         <div>{msg.time}</div>
@@ -173,7 +176,7 @@ function Room() {
                                         }
                                         else {
                                             return (
-                                                <div key={index} className="bg-black mt-2  w-60  rounded-tl-lg rounded-tr-lg rounded-bl-lg ml-20 ">
+                                                <div key={index} className="bg-black mt-2  w-60  rounded-tl-lg rounded-tr-lg rounded-bl-lg mr-4 ml-20 md:ml-[200px]">
                                                     <div className="flex bg-gray-200 items-center justify-between px-2 rounded-tl-lg rounded-tr-lg text-sm py-1 font-semibold">
                                                         <div>You</div>
                                                         <div>{msg.time}</div>
@@ -190,7 +193,7 @@ function Room() {
                             }
                         </div>
                     </div>
-                    <div className="onlinediv h-96 bg-white w-52  absolute  right-1 top-20  rounded-tr-lg rounded-br-lg overflow-y-scroll border-l-2 border-gray-300  z-10 hidden">
+                    <div className="onlinediv h-[336px] bg-white w-52  absolute  right-[1px] top-[96px] md:h-[492px] md:top-2 overflow-y-scroll border-l-2 border-gray-300  z-10 hidden">
                         {
                             users.map((user) => (
                                 <div key={user.id} className="bg-gray-200 p-2 text-gray-800 mb-1" >{user.name}</div>
@@ -198,20 +201,26 @@ function Room() {
                         }
 
                     </div>
-                    <form className="input-text" onSubmit={(e) => sendmessage(e)}>
-                        <input ref={inputRef} placeholder="Type Message here..." type="text" className="inputfield outline-none rounded-bl-lg border-t-2 p-3 px-5 md:px-3 border-gray-800 w-80 " value={inputfield} onChange={(e) => setinputfield(e.target.value)} />
-                        <button type="submit" className="border-gray-800 border-t-2 sendbutton bg-gray-600 p-4 absolute text-white text-lg">
-                            <FiSend />
-                        </button>
-
-                    </form>
+                    <div className="w-full h-[50px]">
+                        <form className="input-text h-[50px] flex items-center" onSubmit={(e) => sendmessage(e)}>
+                            <input ref={inputRef} placeholder="Type Message here..." type="text" className="inputfield outline-none rounded-bl-lg border-t-2 p-3 px-5 md:px-3 border-gray-800 w-full" value={inputfield} onChange={(e) => setinputfield(e.target.value)} />
+                            <button type="submit" className="border-gray-800 border-t-2 sendbutton bg-gray-600 h-[50px] px-4 text-white text-lg">
+                                <FiSend />
+                            </button>
+                        </form>
+                    </div>
                 </>)
                 :
                 (<>
-                    <h1 className="text-5xl  flex items-center absolute top-20 w-80 mr-7 tracking-wider text-white  header font-thin  justify-center   md:text-7xl md:ml-20"><img className="h-14 md:h-20" src="./logo.png" alt="" /> ZAP</h1>
-                    <h3 className="md:text-2xl text-xl text-center text-white tracking-widest font-thin m">A ONE STOP SOLUTION  TO<br /><br /> CREATE OR JOIN EXISTING <span className="text-gray-800 font-normal">'CHAT ROOMS'</span></h3>
+                    <div className='flex justify-center w-full'>
+                        <h1 className="text-5xl  flex items-center top-20 w-80 tracking-wider text-white  header font-thin  justify-center   md:text-7xl"><img className="h-14 md:h-20" src="./logo.png" alt="" /> ZAP</h1>
+                    </div>
+                    <h3 className="md:text-2xl text-xl text-center text-white tracking-widest mt-20 font-thin m">A ONE STOP SOLUTION  TO<br /><br /> CREATE OR JOIN EXISTING <span className="text-gray-800 font-normal">'CHAT ROOMS'</span></h3>
                     <br />
-                    <button className="bg-gray-800  text-white  p-3 bottom-28 ml-10 absolute md:p-5  md:bottom-32 md:text-lg rounded-md hover:bg-gray-600 tracking-wider md:ml-28" onClick={() => loginWithRedirect()}>LOGIN HERE TO CONTINUE</button>
+                    <div className='w-full flex justify-center items-center mt-20'>
+                        <button className="bg-gray-800  text-white  p-3 bottom-28  md:p-5  md:bottom-32 md:text-lg rounded-md hover:bg-gray-600 tracking-wider" onClick={() => loginWithRedirect()}>LOGIN HERE TO CONTINUE</button>
+                    </div>
+
                 </>)
             }
         </div >

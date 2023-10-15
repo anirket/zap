@@ -8,49 +8,18 @@
     height: 100vh;
 }
 
-.input-text {
-    position: absolute;
-    bottom: 3.55rem;
-    padding: 0.1rem
-}
-
-.onlinediv {
-    height: 35vh;
-    margin-top: 7.5rem;
-}
 
 @media only screen and (min-width:768px) {
     .messagediv {
-        height: 75vh;
+        height: 550px;
         margin-top: -3rem;
-        width: 40vw;
-    }
-    .onlinediv {
-        height: 59.5vh;
-        margin-top: 3.8rem;
-        right: 30%;
-        TOP: 2.5%;
-    }
-    .onlineactive {
-        margin-top: -0.1rem;
-        margin-right: -0.75rem;
-        right: 30.8%;
-        top: 14%;
-    }
-    .input-text {
-        position: fixed;
-        bottom: 5.75rem;
-    }
-    .inputfield {
-        width: 23.2vw;
+        width: 500px;
     }
     .copyclipboarddiv {
-        width: 53.9vh;
-    top: 5.5px;
+        top: -93px;
         outline: none;
+        width: 500px;
     }
-
- 
 }
 
 ::-webkit-scrollbar {
