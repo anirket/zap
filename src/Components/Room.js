@@ -10,7 +10,7 @@ import { MdContentCopy } from "react-icons/md";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Notifications, { notify } from 'react-notify-toast';
 let socket, roomid;
-const CONNECTION_PORT = "https://zapserver123.herokuapp.com/";
+const CONNECTION_PORT = "https://zap-server.onrender.com/";
 
 function Room() {
 

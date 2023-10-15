@@ -10,7 +10,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Notifications, { notify } from 'react-notify-toast';
 import { Link } from 'react-router-dom'
 let socket, name, sub;
-const CONNECTION_PORT = "https://zapserver123.herokuapp.com/";
+const CONNECTION_PORT = "https://zap-server.onrender.com/";
 
 function Joinroom() {
     const {

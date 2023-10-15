@@ -5,7 +5,7 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 .mainpage {
-    height: 85vh;
+    height: 100vh;
 }
 
 .input-text {
@@ -15,12 +15,8 @@
 }
 
 .onlinediv {
-
     height: 35vh;
-  
     margin-top: 7.5rem;
-
-
 }
 
 @media only screen and (min-width:768px) {
